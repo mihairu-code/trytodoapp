@@ -1,33 +1,27 @@
 import React, { useState } from 'react';
 
-const NewTaskForm = ({ onAdd }) => {
-    const [description, setDescription] = useState('');
+const NewTaskForm = () => {
+    const [task, setTask] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (description.trim()) {
-            onAdd({ id: Date.now(), description, completed: false, editing: false, createdAt: '17 seconds ago' });
-            setDescription('');
+        if (task.trim()) {
+            console.log('Task added:', task); // Replace with actual task addition logic
+            setTask('');
         }
     };
 
     return (
-        <header className="header">
-            <h1>todos</h1>
-            <form onSubmit={handleSubmit}>
-                <input
-                    className="new-todo"
-                    placeholder="What needs to be done?"
-                    autoFocus
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                />
-            </form>
-        </header>
+        <form onSubmit={handleSubmit}>
+            <input
+                className="new-todo"
+                placeholder="What needs to be done?"
+                value={task}
+                onChange={(e) => setTask(e.target.value)}
+                autoFocus
+            />
+        </form>
     );
 };
 
 export default NewTaskForm;
-
-
-
