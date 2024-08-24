@@ -1,14 +1,18 @@
 import React from 'react';
 import { formatDistanceToNowStrict } from 'date-fns';
 
-const Task = ({ task }) => {
+const Task = ({ task, onToggle }) => {
     const { description, created, completed } = task;
     const createdAt = formatDistanceToNowStrict(new Date(created));
 
     return (
         <li className={completed ? 'completed' : ''}>
             <div className="view">
-                <input className="toggle" type="checkbox" checked={completed} readOnly />
+                <input className="toggle"
+                       type="checkbox"
+                       checked={completed}
+                       onChange={onToggle}
+                />
                 <label>
                     <span className="description">{description}</span>
                     <span className="created">created {createdAt} ago</span>
