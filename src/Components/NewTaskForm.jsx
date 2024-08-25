@@ -1,25 +1,22 @@
 import React, { useState } from 'react';
 
-const NewTaskForm = () => {
+const NewTaskForm = ({ onAddTask }) => {
     const [task, setTask] = useState('');
+    const [isFocused, setIsFocused] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (task.trim()) {
-
-            console.log('Task added:', task); // Replace with actual task addition logic
-
+            onAddTask(task);
             setTask('');
         }
     };
-
-    const [isFocused, setIsFocused ] = useState(false);
 
     return (
         <form onSubmit={handleSubmit}>
             <input
                 className="new-todo"
-                placeholder={isFocused ? '' : "What needs to be done?" }
+                placeholder={isFocused ? '' : 'What needs to be done?'}
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
                 value={task}
