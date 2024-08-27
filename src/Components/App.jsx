@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import TaskList from './TaskList';
 import Footer from './Footer';
 import NewTaskForm from './NewTaskForm';
-import ExtraComponent from "./ExtraComponent";
+
 
 const App = () => {
     const [tasks, setTasks] = useState([]);
@@ -53,6 +53,11 @@ const App = () => {
         setAllSelected(!allSelected);
     };
 
+    const handleTaskEdit = (taskId, newDescription) => {
+        setTasks(tasks.map(task =>
+            task.id === taskId ? { ...task, description: newDescription } : task
+        ));
+    };
 
     return (
         <section className="todoapp">
@@ -61,7 +66,7 @@ const App = () => {
                 <NewTaskForm onAddTask={addTask}/>
             </header>
             <section className="main">
-                <TaskList tasks={filteredTasks} onToggle={toggleSwitch} onDelete={deleteTask}/>
+                <TaskList tasks={filteredTasks} onToggle={toggleSwitch} onDelete={deleteTask} onEdit={handleTaskEdit} />
             </section>
             <Footer activeTaskCounter={activeTasksCounter}
                     filter={filtered}

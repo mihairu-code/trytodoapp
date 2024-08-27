@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import PropTypes from "prop-types";
 
-const NewTaskForm = ({ onAddTask }) => {
+const NewTaskForm = ({ onAddTask = onAddTask(undefined) }) => {
     const [task, setTask] = useState('');
     const [isFocused, setIsFocused] = useState(false);
 
@@ -25,5 +26,9 @@ const NewTaskForm = ({ onAddTask }) => {
         </form>
     );
 };
+
+NewTaskForm.propTypes = {
+    onAddTask: PropTypes.func.isRequired,
+}
 
 export default NewTaskForm;

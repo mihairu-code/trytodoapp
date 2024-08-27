@@ -130,8 +130,8 @@ body {
 .select-all-tab {
     position: absolute;
     top: 50%;
-    left: -90px;
-    transform: translate(550px, 15px);
+    left: -80px;
+    transform: translate(535px, 15px);
     background-color: #f0f0f0;
     border: 1px solid #ddd;
     padding: 10px 20px;

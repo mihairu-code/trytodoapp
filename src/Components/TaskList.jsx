@@ -1,7 +1,8 @@
 import React from 'react';
 import Task from './Task';
+import PropTypes from "prop-types";
 
-const TaskList = ({ tasks, onToggle, onDelete }) => {
+const TaskList = ({ tasks = [], onToggle, onDelete, onEdit }) => {
     return (
         <ul className="todo-list">
             {tasks.map((task) => (
@@ -10,10 +11,15 @@ const TaskList = ({ tasks, onToggle, onDelete }) => {
                     task={task}
                     onToggle={() => onToggle(task.id)}
                     onDelete={() => onDelete(task.id)}
+                    onEdit={onEdit}
                 />
             ))}
         </ul>
     );
 };
+
+TaskList.propTypes = {
+    tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
+}
 
 export default TaskList;

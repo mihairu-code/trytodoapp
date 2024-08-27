@@ -1,7 +1,7 @@
 import React from 'react';
-import App from "./App";
+import PropTypes from "prop-types";
 
-const ExtraComponent = ({ allSelected, selectAllToggle }) => {
+const ExtraComponent = ({ allSelected = false, selectAllToggle }) => {
     return (
         <button className="select-all-tab" onClick={selectAllToggle}>
             {allSelected ? "Unselect All" : "Select All"}
@@ -9,6 +9,9 @@ const ExtraComponent = ({ allSelected, selectAllToggle }) => {
     )
 };
 
-
+ExtraComponent.propTypes = {
+    allSelected: PropTypes.bool,
+    selectAllToggle: PropTypes.func,
+}
 
 export default ExtraComponent;
