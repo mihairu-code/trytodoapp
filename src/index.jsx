@@ -1,12 +1,12 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client'; // Импортируем createRoot
+import { createRoot } from 'react-dom/client';
 import App from './Components/App';
-import './style.css'; // Подключаем стили из index.css
+import './style.css';
 
 const root = createRoot(document.getElementById('root')); // Создаем корневой элемент
 
 root.render(
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
 );
