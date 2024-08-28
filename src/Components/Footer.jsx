@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import TaskFilter from './TaskFilter';
 import ExtraComponent from './ExtraComponent';
-import PropTypes from 'prop-types';
 
 const Footer = ({
   activeTaskCounter = 0,
