@@ -7,9 +7,9 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:prettier/recommended",
     "plugin:import/errors",
-    "plugin:import/warnings"
+    "plugin:import/warnings",
+    "airbnb"
   ],
   "parserOptions": {
     "ecmaFeatures": {
@@ -18,10 +18,9 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react", "prettier", "import"],
+  "plugins": ["react", "import"],
   "rules": {
     "indent": ["error", 2],
-    "prettier/prettier": "error",
     "linebreak-style": [0, "unix"],
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
