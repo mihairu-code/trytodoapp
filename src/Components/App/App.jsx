@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import NewTaskForm from '../NewTaskForm/NewTaskForm.jsx';
@@ -13,7 +13,6 @@ let timerId = [];
 export default function App() {
   function createTodoTask(label, time, timerInSec) {
     const trimLabel = label.replace(/ +/g, ' ').trim();
-
     return {
       id: maxId++,
       label: trimLabel,
@@ -26,8 +25,32 @@ export default function App() {
     };
   }
 
-  const [todoData, setTodoData] = useState([]);
+  const [todoData, setTodoData] = useState(() => {
+    // Загрузка данных из localStorage при первой загрузке
+    const savedData = localStorage.getItem('todoData');
+    return savedData ? JSON.parse(savedData) : [];
+  });
+
   const [filterData, setFilter] = useState('all');
+
+  // Сохранение todoData в localStorage при изменении данных
+  useEffect(() => {
+    localStorage.setItem('todoData', JSON.stringify(todoData));
+  }, [todoData]);
+
+  // Слушатель события storage для синхронизации между вкладками
+  useEffect(() => {
+    const handleStorageChange = (event) => {
+      if (event.key === 'todoData') {
+        const updatedData = JSON.parse(event.newValue);
+        setTodoData(updatedData);
+      }
+    };
+    window.addEventListener('storage', handleStorageChange);
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
 
   const deleteTask = (id) => {
     onPauseTimer(id);

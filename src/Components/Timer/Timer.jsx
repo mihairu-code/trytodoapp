@@ -17,13 +17,6 @@ export default function Timer({ timerInSec, disabled, onPlayTimer, onPauseTimer 
   );
 }
 
-Timer.defaultProps = {
-  timerInSec: 0,
-  disabled: false,
-  onPlayTimer: () => {},
-  onPauseTimer: () => {},
-};
-
 Timer.propTypes = {
   timerInSec: PropTypes.node,
   disabled: PropTypes.bool,
