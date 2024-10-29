@@ -1,0 +1,29 @@
+.select-all-tab {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: -80px;
+    transform: translate(535px, 15px);
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: left 0.3s ease;
+    z-index: -10;
+}
+
+.select-all-tab:hover {
+    left: 0;
+    background-color: #e0e0e0;
+}
+
+.select-all-tab::after {
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: 0;
+    bottom: 0;
+    width: 10px;
+    background-color: #ddd;
+    border-right: 1px solid #ddd;
+}
