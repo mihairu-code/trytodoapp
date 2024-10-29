@@ -26,11 +26,7 @@ export default function App() {
     };
   }
 
-  const [todoData, setTodoData] = useState([
-    createTodoTask('Completed task', new Date(2024, 4, 17), 90),
-    createTodoTask('Editing task', new Date(2024, 6, 4), 140),
-    createTodoTask('Active task', new Date(2024, 6, 17, 12, 10, 0), 15),
-  ]);
+  const [todoData, setTodoData] = useState([]);
   const [filterData, setFilter] = useState('all');
 
   const deleteTask = (id) => {
