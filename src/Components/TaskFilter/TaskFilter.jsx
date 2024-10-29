@@ -58,10 +58,6 @@ export default function TasksFilter({ setFilterData }) {
   );
 }
 
-TasksFilter.defaultProps = {
-  setFilterData: () => {},
-};
-
 TasksFilter.propTypes = {
   setFilterData: PropTypes.func,
 };

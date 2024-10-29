@@ -139,22 +139,6 @@ export default function App() {
   );
 }
 
-App.defaultProps = {
-  todoData: [
-    {
-      id: 1,
-      label: 'Получить данные с сервера',
-      completed: false,
-      editing: false,
-      time: Date.now(),
-      timerInSec: 0,
-      timerStarted: false,
-      disabled: false,
-    },
-  ],
-  filterData: 'all',
-};
-
 App.propTypes = {
   todoData: PropTypes.arrayOf(PropTypes.object),
   filterData: PropTypes.string,

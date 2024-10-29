@@ -35,26 +35,6 @@ export default function TaskList({ todos, filterData, onDeleted, onCheckboxClick
   return <ul className="todo-list">{tasks}</ul>;
 }
 
-TaskList.defaultProps = {
-  todos: [
-    {
-      id: 1,
-      label: 'Получить данные с сервера',
-      completed: false,
-      editing: false,
-      time: new Date(),
-      timerInSec: 0,
-      timerStarted: false,
-      disabled: false,
-    },
-  ],
-  filterData: 'all',
-  onDeleted: () => {},
-  onCheckboxClick: () => {},
-  onPlayTimer: () => {},
-  onPauseTimer: () => {},
-};
-
 TaskList.propTypes = {
   todos: PropTypes.arrayOf(PropTypes.object),
   filterData: PropTypes.oneOf(['all', 'active', 'completed']),

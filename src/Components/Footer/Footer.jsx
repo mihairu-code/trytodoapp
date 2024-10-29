@@ -17,14 +17,6 @@ export default function Footer({ notCompletedTasks, setFilterData, onClearComple
   );
 }
 
-Footer.defaultProps = {
-  notCompletedTasks: 0,
-  onClearCompleted: () => {
-  },
-  setFilterData: () => {
-  },
-};
-
 Footer.propTypes = {
   notCompletedTasks: PropTypes.number,
   onClearCompleted: PropTypes.func,

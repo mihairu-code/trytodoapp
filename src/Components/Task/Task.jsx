@@ -45,20 +45,6 @@ export default function Task(props) {
   );
 }
 
-Task.defaultProps = {
-  label: '',
-  completed: false,
-  editing: false,
-  time: new Date(),
-  timerInSec: 0,
-  timerStarted: false,
-  disabled: false,
-  onDeleted: () => {},
-  onCheckboxClick: () => {},
-  onPlayTimer: () => {},
-  onPauseTimer: () => {},
-};
-
 Task.propTypes = {
   label: PropTypes.string,
   completed: PropTypes.bool,
