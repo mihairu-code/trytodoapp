@@ -31,6 +31,30 @@ export default function App() {
     return savedData ? JSON.parse(savedData) : [];
   });
 
+  const onEditTask = (id) => {
+    setTodoData((prevTodoData) =>
+      prevTodoData.map((task) => ({
+        ...task,
+        editing: task.id === id,
+      }))
+    );
+  };
+
+  const onSaveTask = (id, newLabel) => {
+    setTodoData((prevTodoData) =>
+      prevTodoData.map((task) => {
+        if (task.id === id) {
+          return {
+            ...task,
+            label: newLabel,
+            editing: false,
+          };
+        }
+        return task;
+      })
+    );
+  };
+
   const [filterData, setFilter] = useState('all');
 
   // Сохранение todoData в localStorage при изменении данных
@@ -151,6 +175,8 @@ export default function App() {
         <TaskList
           todos={todoData}
           filterData={filterData}
+          onEditTask={onEditTask}
+          onSaveTask={onSaveTask}
           onDeleted={deleteTask}
           onCheckboxClick={checkboxClick}
           onPlayTimer={onPlayTimer}

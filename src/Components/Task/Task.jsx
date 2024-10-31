@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
 import { formatDistanceToNow } from 'date-fns';
 
 import Timer from '../Timer/Timer.jsx';
 
 import './Task.css';
+import { useState } from 'react';
 export default function Task(props) {
   const {
     label,
@@ -16,19 +16,24 @@ export default function Task(props) {
     onDeleted,
     onPlayTimer,
     onPauseTimer,
+    onEditTask,
+    onSaveTask,
   } = props;
 
-  let className = 'active';
+  const [editedDescription, setEditedDescription] = useState(label);
 
-  if (completed) {
-    className = 'completed';
-  }
-  if (editing) {
-    className = 'editing';
-  }
+  const handleSave = () => {
+    onSaveTask(editedDescription);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleSave();
+    }
+  };
 
   return (
-    <li className={className}>
+    <li>
       <div className="view">
         <input className="toggle" type="checkbox" readOnly onClick={onCheckboxClick} checked={completed} />
         <label>
@@ -38,22 +43,20 @@ export default function Task(props) {
           <Timer timerInSec={timerInSec} disabled={disabled} onPlayTimer={onPlayTimer} onPauseTimer={onPauseTimer} />
           <span className="description">created {formatDistanceToNow(time)} ago</span>
         </label>
-        <button className="icon icon-edit"></button>
+        <button className="icon icon-edit" onClick={() => onEditTask()}></button>
         <button className="icon icon-destroy" onClick={onDeleted}></button>
       </div>
+      {editing && (
+        <input
+          className="edit"
+          value={editedDescription}
+          onChange={(e) => setEditedDescription(e.target.value)}
+          onBlur={handleSave}
+          onKeyDown={handleKeyDown}
+          autoFocus
+        />
+      )}
     </li>
   );
 }
 
-Task.propTypes = {
-  label: PropTypes.string,
-  completed: PropTypes.bool,
-  editing: PropTypes.bool,
-  time: PropTypes.instanceOf(Date),
-  timerInSec: PropTypes.node,
-  timerStarted: PropTypes.bool,
-  onDeleted: PropTypes.func,
-  onCheckboxClick: PropTypes.func,
-  onPlayTimer: PropTypes.func,
-  onPauseTimer: PropTypes.func,
-};

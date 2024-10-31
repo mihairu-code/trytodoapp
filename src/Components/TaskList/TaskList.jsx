@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Task from '../Task/Task.jsx';
 import './TaskList.css';
 
-export default function TaskList({ todos, filterData, onDeleted, onCheckboxClick, onPlayTimer, onPauseTimer }) {
+export default function TaskList({ todos, filterData, onDeleted, onCheckboxClick, onPlayTimer, onPauseTimer, onEditTask, onSaveTask }) {
   let tasks;
 
   const taskTemplate = () => {
@@ -13,6 +13,8 @@ export default function TaskList({ todos, filterData, onDeleted, onCheckboxClick
         <Task
           key={id}
           {...itemProps}
+          onEditTask={() => onEditTask(id)} // Передаем onEditTask
+          onSaveTask={(newLabel) => onSaveTask(id, newLabel)}
           onCheckboxClick={() => onCheckboxClick(id)}
           onDeleted={() => onDeleted(id)}
           onPlayTimer={() => onPlayTimer(id)}
